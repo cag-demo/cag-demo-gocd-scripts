@@ -12,8 +12,8 @@ TUTUMUSER=`grep -e 'user =' ~/.tutum  | awk '{print $3}'`
 # TODO remove debug print
 echo In publish_docker.sh:
 echo TUTUMUSER: $TUTUMUSER
-echo IMAGE_NAME: IMAGE_NAME
-echo VERSION: VERSION
+echo IMAGE_NAME: $IMAGE_NAME
+echo VERSION: $VERSION
 
 docker tag ${IMAGE_NAME}:${VERSION} tutum.co/${TUTUMUSER}/${IMAGE_NAME}:${VERSION} 
 docker push tutum.co/${TUTUMUSER}/${IMAGE_NAME}:${VERSION}
