@@ -5,9 +5,9 @@
 
 set -eu
 
-if ! which tutum >/dev/null
+if ! which docker-cloud >/dev/null
 then
-    echo "Please install Tutum CLI using 'sudo -H pip install tutum'"
+    echo "Please install Docker Cloud CLI using 'sudo -H pip install docker-cloud'"
     exit 1
 fi
 
@@ -21,14 +21,14 @@ stackfile=$1
 project=$2
 environment=$3
 
-if tutum stack list | grep ${project}-${environment}
+if docker-cloud stack list | grep ${project}-${environment}
 then
     echo "We have a stack running, update"
-    tutum stack update ${project}-${environment} --sync -f $stackfile
+    docker-cloud stack update ${project}-${environment} --sync -f $stackfile
     echo "Redeploy"
-    tutum stack redeploy ${project}-${environment} --sync
+    docker-cloud stack redeploy ${project}-${environment} --sync
     echo "Done"
 else
     echo "We have to create one"
-    tutum stack up -n ${project}-${environment} --sync -f $stackfile
+    docker-cloud stack up -n ${project}-${environment} --sync -f $stackfile
 fi
