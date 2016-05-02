@@ -21,7 +21,7 @@ stackfile=$1
 project=$2
 environment=$3
 
-if docker-cloud stack list | grep ${project}-${environment}
+if docker-cloud stack ls | grep ${project}-${environment}
 then
     echo "We have a stack running, update"
     docker-cloud stack update ${project}-${environment} --sync -f $stackfile
